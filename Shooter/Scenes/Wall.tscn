@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://jst67cbj1fg8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nit3b"]
+
+[node name="Wall" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_nit3b")
+constant_linear_velocity = Vector2(100, 0)
