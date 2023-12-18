@@ -155,10 +155,10 @@ radius = 21.0
 [node name="Character" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_1pgfb")
+ammo_count = 100
 
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(11, 0)
-scale = Vector2(2.06382e+11, -3.50107e+07)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = -1.5708
@@ -190,4 +190,13 @@ texture_scale = 2.0
 position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_nf4ne")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -5.0
+offset_right = 20.0
+offset_bottom = 18.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]

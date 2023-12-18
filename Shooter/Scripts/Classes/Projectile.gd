@@ -10,8 +10,7 @@ var direction = Vector2.ZERO
 @onready var area2D = $Area2D 
 
 func _ready():
-	pass
+	look_at(global_position + direction)
 
 func _physics_process(delta):
 	position += direction * speed * delta
-

@@ -29,6 +29,7 @@ func _on_area_2d_area_entered(area):
 
 	if parent_node.is_in_group("Projectile"):
 		health -= parent_node.damage
+		parent_node._hit()
 
 func _die():
 	queue_free()
