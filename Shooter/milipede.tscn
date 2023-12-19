@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://brbxxjaqehaj2"]
+
+[ext_resource type="Texture2D" uid="uid://dx7r4seapqttg" path="res://Sprite/MilipedeSection.png" id="1_6kfam"]
+[ext_resource type="Script" path="res://milipede.gd" id="1_8xdci"]
+[ext_resource type="Texture2D" uid="uid://42qxkov5e3lp" path="res://Sprite/Slime.png" id="1_sosii"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53h4v"]
+radius = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nweb1"]
+radius = 17.0
+height = 64.0
+
+[node name="Milipede" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Head" type="RigidBody2D" parent="Body"]
+position = Vector2(-23, -1)
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_8xdci")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Head"]
+texture = ExtResource("1_sosii")
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Head"]
+shape = SubResource("CircleShape2D_53h4v")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Head"]
+position = Vector2(8, 0)
+node_a = NodePath("..")
+node_b = NodePath("../../Section")
+bias = 0.9
+
+[node name="Section" type="RigidBody2D" parent="Body"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Section"]
+texture = ExtResource("1_6kfam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Section"]
+shape = SubResource("CapsuleShape2D_nweb1")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Section"]
+position = Vector2(4, 0)
+node_a = NodePath("..")
+node_b = NodePath("../../Section2")
+
+[node name="Section2" type="RigidBody2D" parent="Body"]
+position = Vector2(18, 0)
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Section2"]
+texture = ExtResource("1_6kfam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Section2"]
+shape = SubResource("CapsuleShape2D_nweb1")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Section2"]
+position = Vector2(4, 0)
+node_a = NodePath("..")
+node_b = NodePath("../../Section3")
+
+[node name="Section3" type="RigidBody2D" parent="Body"]
+position = Vector2(36, 0)
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Section3"]
+texture = ExtResource("1_6kfam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Section3"]
+shape = SubResource("CapsuleShape2D_nweb1")

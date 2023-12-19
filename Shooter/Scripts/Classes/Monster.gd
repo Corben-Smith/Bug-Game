@@ -2,7 +2,7 @@ class_name Monster
 extends Node2D
 
 @onready var area2D = $Area2D
-
+@onready var nav: NavigationAgent2D = $NavigationAgent2D
 @export var player: CharacterBody2D
 
 
@@ -17,8 +17,12 @@ func _ready():
 
 func _physics_process(delta):
 	$Area2D/Label.text = "%s" % health
-	direction = (player.position - position).normalized()
-	look_at(player.position)
+	
+	nav.target_position = player.global_position
+	
+	direction = (nav.get_next_path_position() - global_position).normalized()
+	look_at(nav.get_next_path_position())
+	
 	position += direction * delta * speed
 	
 	if(health <= 0):
@@ -26,6 +30,7 @@ func _physics_process(delta):
 
 func _on_area_2d_area_entered(area):
 	var parent_node =  area.get_parent()
+	print_debug("Hit")
 
 	if parent_node.is_in_group("Projectile"):
 		health -= parent_node.damage
