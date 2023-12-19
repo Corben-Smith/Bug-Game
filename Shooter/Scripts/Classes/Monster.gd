@@ -10,18 +10,13 @@ var health: int
 var speed: int
 var damage: int
 
-var direction
+var direction: Vector2
 
 func _ready():
-	pass
+	player = get_tree().get_first_node_in_group("Character")
 
 func _physics_process(delta):
 	$Area2D/Label.text = "%s" % health
-	
-	nav.target_position = player.global_position
-	
-	direction = (nav.get_next_path_position() - global_position).normalized()
-	look_at(nav.get_next_path_position())
 	
 	position += direction * delta * speed
 	
